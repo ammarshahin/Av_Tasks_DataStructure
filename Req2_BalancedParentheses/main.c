@@ -1,6 +1,6 @@
 /* check For Balance in C With stack
 	Created by : ammar shahin
-	Data : 30/10/2019                              */
+	Data : 30/10/2019                    */
 
 
 #include <stdlib.h>
