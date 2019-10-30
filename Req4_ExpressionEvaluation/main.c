@@ -100,22 +100,34 @@ long long evaluate(char* expression)
         i=0;
 		while(i < queue.Top)
 		{
+		    if(arr[i] == '+' || arr[i] == '-' || arr[i] == '*' || arr[i] == '/')
+            {
+                //Do nothing
+            }
+            else
+            {
+                arr[i] -= 48;
+            }
+            i++;
+		}
+		i = 0;
+
+		while(i < queue.Top)
+		{
 				switch(arr[i])
 				{
 					case '+':
-							arr[i+1] = (arr[i-1] - 48) + (arr[i+1] - 48);
+							arr[i+1] = arr[i-1] + arr[i+1];
 							break;
 					case '-':
-							arr[i+1] = (arr[i-1] - 48) - (arr[i+1] - 48);
+							arr[i+1] = arr[i-1] - arr[i+1];
 							break;
 					case '*':
-							arr[i+1] = (arr[i-1] - 48) * (arr[i+1] - 48);
+							arr[i+1] = arr[i-1] * arr[i+1];
 							break;
 					case '/':
-							arr[i+1] = (arr[i-1] - 48) / (arr[i+1] - 48);
+							arr[i+1] = arr[i-1] / arr[i+1];
 							break;
-					//default:
-							//printf("Not vallid!!!");
 				}
 				i++;
 		}
