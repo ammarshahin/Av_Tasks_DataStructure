@@ -12,9 +12,9 @@ int main(){ /* the program starts here */
 
 /* declare variables used */
 	int  choice,r=0,r2;
-	ST_node* temp;
-    ST_node* listhead = NULL;
-    r = createList(listhead);
+	ST_node* temp = NULL;
+    ST_node listhead;
+    r = createList(&listhead);
 
 /* print the list of choices */
 	printf("1. Print the list.\n");
@@ -44,7 +44,7 @@ int main(){ /* the program starts here */
 				scanf("%d",&r);
 				printf("Enter The element to insert: ");
 				scanf("%d",&r2);
-				r = insertToList(listhead,r,r2);
+				r = insertToList(&listhead,r,r2);
 				break;
 
 			/*case 3:
