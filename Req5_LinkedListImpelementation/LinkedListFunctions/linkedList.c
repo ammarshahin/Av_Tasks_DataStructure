@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include "linkedLists.h"
 
-char createList(ST_node *listHead){
-       listHead = NULL; // set the Start pointer to point at nothing as the list is empty
+void createList(ST_node *listHead){
+       listhead = NULL; // set the Start pointer to point at nothing as the list is empty
 }
 
 
@@ -39,10 +39,10 @@ char insertToList(ST_node *listHead, unsigned char position, int data){
 
 	element->data = data;
 	unsigned char counter = 1;
-    ST_node* temp = listHead;
+    ST_node* temp = listhead;
 
-    if(listHead == NULL){                // the list is empty
-		listHead = element;
+    if(listhead == NULL){                // the list is empty
+		listhead = element;
 		element->next = NULL;
 		return 1;
     }
@@ -61,8 +61,8 @@ char insertToList(ST_node *listHead, unsigned char position, int data){
 
 /* Function that deletes a certain node.
 It receives the position of the element, returns 1 if the data was found and deleted and, returns 0 if the data wasn't found  */
-void deleteFromList(ST_node *listHead, unsigned char position, int* data){
-    ST_node* temp = listHead;
+char deleteFromList(ST_node *listHead, unsigned char position, int* data){
+    ST_node* temp = listhead;
     unsigned char counter = 1;
 
     while( (temp->next != NULL) && (counter != position) ){
@@ -74,7 +74,7 @@ void deleteFromList(ST_node *listHead, unsigned char position, int* data){
 		return 0;
 
 	if(position == 0){   // the Data is at First and it's the only element in the List
-		listHead->next = NULL;  // reset the list to be empty
+		listhead->next = NULL;  // reset the list to be empty
 		free(temp->next);
 		return 1;
 	}else if(temp->next->next == NULL && position == counter){    // the Data is at the End of the List
