@@ -17,7 +17,7 @@ ST_node *listhead;
 
 
 void createList(ST_node *listHead);
-static ST_node* create_Node();
+ST_node* create_Node();
 char insertToList(ST_node *listHead, unsigned char position, int data);
 char deleteFromList(ST_node *listHead, unsigned char position, int* data);
 //ST_node* searchIntoList(ST_node *listHead, int data);

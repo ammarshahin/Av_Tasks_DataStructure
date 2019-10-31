@@ -13,7 +13,7 @@ void createList(ST_node *listHead){
 
 
 /* Function to Dynamically allocate memory in the Heap and return the pointer points to this space                                                         */
-static ST_node* create_Node(){
+ST_node* create_Node(){
 	return ((ST_node*) malloc(sizeof(ST_node)));
 }
 /* Note: we should always cheek the return pointer as it may be NULL if there was not enough memory in the heap                                              */
@@ -38,6 +38,8 @@ char insertToList(ST_node *listHead, unsigned char position, int data){
     }
 
 	element->data = data;
+
+
 	unsigned char counter = 1;
     ST_node* temp = listhead;
 
@@ -45,6 +47,13 @@ char insertToList(ST_node *listHead, unsigned char position, int data){
 		listhead = element;
 		element->next = NULL;
 		return 1;
+    }
+
+    if(position == 0)
+    {
+        element->next = listhead;
+        listhead = element;
+        return 1;
     }
 
     while( (temp->next != NULL) && ( counter != position))
@@ -60,32 +69,50 @@ char insertToList(ST_node *listHead, unsigned char position, int data){
 
 
 /* Function that deletes a certain node.
-It receives the position of the element, returns 1 if the data was found and deleted and, returns 0 if the data wasn't found  */
+It receives the position of the element, returns 1 if the data was found and deleted and, returns 0 if the data was not found  */
 char deleteFromList(ST_node *listHead, unsigned char position, int* data){
+
     ST_node* temp = listhead;
+    ST_node* temp2 = listhead;
     unsigned char counter = 1;
 
-    while( (temp->next != NULL) && (counter != position) ){
-			temp = temp->next;
-            counter++;
+    if(temp == NULL)    // the list is empty
+    {
+        return 0;
+    }
+    else if(position == 0) // the list has only one element
+    {
+        listhead = temp->next;
+        free(temp);
+        return 1;
+    }
+    else
+    {
+        temp2 = temp2->next;
     }
 
-    if(temp->next == NULL)  // the Node wasn't found ______ OR the List is empty
-		return 0;
 
-	if(position == 0){   // the Data is at First and it's the only element in the List
-		listhead->next = NULL;  // reset the list to be empty
-		free(temp->next);
-		return 1;
-	}else if(temp->next->next == NULL && position == counter){    // the Data is at the End of the List
-		temp->next = NULL;
-		free(temp->next);
-		return 1;
-	}else{                      // the Data is at The Middle
-		temp->next = temp->next->next;
-		free(temp->next);
-		return 1;
-	}
+    while( temp2->next != NULL )
+    {
+        if(counter == position)
+        {
+            temp->next = temp2->next;
+            free(temp2);
+            return 1;
+        }
+
+        temp2 = temp2->next;
+        temp = temp->next;
+        counter++;
+    }
+
+    if( (temp2->next == NULL) && (counter == position) )
+    {
+        temp->next = NULL;
+        free(temp2);
+        return 1;
+    }
+    return 0;
 }
 
 

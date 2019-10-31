@@ -17,9 +17,9 @@ int main(){ /* the program starts here */
 /* print the list of choices */
 	printf("1. Print the list.\n");
 	printf("2. Insert an element.\n");
-	printf("3. Append an element.\n");
-	printf("4. replace an element.\n");
-	printf("5. Delete an element.\n");
+	printf("3. Delete an element.\n");
+	printf("4. Sort the list.\n");
+	printf("5. Reverse the list.\n");
 	printf("6. Free the List.\n");
 	printf("7. Exit.\n");
 
@@ -45,31 +45,23 @@ int main(){ /* the program starts here */
 				r = insertToList(listhead,r,r2);
 				break;
 
-			/*case 3:
-				printf("Enter The element to append: ");
-				scanf("%d",&r);
-				append(r);
-				break; */
-
-			 /*case 4:
-				printf("Enter The element that you want to replace : ");
-				scanf("%d",&r);
-				printf("Enter The Replacement: ");
-				scanf("%d",&r2);
-				replace_Node(r,r2);
-				break; */
-
-			case 5:
+			case 3:
 			    printf("Enter The position of the element to be deleted: ");
 				scanf("%d",&r);
                 deleteFromList(listhead,r,&r2);
 				break;
 
-			/*case 6:
+            case 4:
+				break;
+
+            case 5:
+				break;
+
+			case 6:
 			    printf("Sure you want to Free the list(1 Or 0): ");
 				scanf("%d",&r);
-				r ? Free_List() : 0;
-				break;*/
+				//r ? Free_List() : 0;
+				break;
 
 			case 7:
 				exit(0);
