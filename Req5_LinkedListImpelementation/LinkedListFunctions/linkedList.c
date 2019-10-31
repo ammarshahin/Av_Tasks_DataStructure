@@ -6,69 +6,69 @@
 #include <stdlib.h>
 #include "linkedLists.h"
 
-void init_List(){
-	START = NULL; // set the Start pointer to point at nothing as the list is empty
-	END = NULL;   // set the End pointer to point at nothing as the list is empty
+char createList(ST_list *list){
+    list->listHead = create_Node();
+    if(list->listHead != NULL)
+    {
+        list->listHead->next = NULL; // set the Start pointer to point at nothing as the list is empty
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 
 
 /* Function to Dynamically allocate memory in the Heap and return the pointer points to this space                                                         */
-struct node* create_Node(){
-	return ((struct node*) malloc(sizeof(struct node)));
+static ST_node* create_Node(){
+	return ((ST_node*) malloc(sizeof(ST_node)));
 }
 /* Note: we should always cheek the return pointer as it may be NULL if there was not enough memory in the heap                                              */
 
 
 
+
+
+
+
 /* the Insert Function receives the data to be inserted____ and don't return any thing */
-void insert_Node(int Data){
-	struct node* element = create_Node();
-	element->data = Data;
-    struct node* temp;
-    temp = START;
-	if((START == NULL)&&(END == NULL)){    // the list is empty
-		append(Data);
+char insertToList(ST_node *listHead, unsigned char position, int data){
+	ST_node* element = create_Node();
+	if(element == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        // Do Nothing
+    }
+	element->data = data;
+	unsigned char counter = 1;
+    ST_node* temp;
+    temp = listHead;
+	if(listHead->next = NULL){    // the list is empty
+		listHead->next = element;
+		element->next = NULL;
 	}else{
-		while((temp!=NULL)&&(temp->data < element->data)){    // To insert the data in the right order (sorted order)
+		while( (temp->next->next != NULL) && ( counter != position)){
 			temp = temp->next;
+			counter++;
 		}
-		if(temp==NULL){  // the data entered is the largest in list and will be inserted in the End
-			append(Data);     // Call Append and set the data in the end
-		}else if(temp==START){  // the data entered is the Smallest in list and will be inserted at the Start
-			element->next =START;
-			element->prev = NULL;
-			START->prev = element;
-			START = element;
-		}else{        // the data entered is in the middle in list and will be inserted in the Middle
-			element->next =temp;
-			element->prev =temp->prev;
-			temp->prev->next = element;
-			temp->prev = element;
+
+		if( temp->next->next == NULL && counter != position ){  // the data entered is not a valid position
+            return 0;
+		}
+		else if(position == 0){  // the data entered will be inserted at the Start
+			element->next =listHead->next;
+			listHead->next = element;
+		}else{        // the data entered will be inserted in the Middle
+			element->next = temp->next;
+            temp->next = element;
 		}
 	}
 }
-
-
-/* the Append Function receives the data to be Added in the last Spot ____ and don't return any thing */
-void append(int Data){
-    struct node* element = create_Node();
-	element->data = Data;
-
-	if((START == NULL)&&(END == NULL)){    // the list is empty___ and this is will be the first element
-		START = element;
-		END = element;
-		element->prev = NULL;
-		element->next = NULL;
-	}else{                      // the list in Not_Empty and the element will be inserted in the End
-		END->next = element;
-		element->prev = END;
-		END = element;
-		element->next = NULL;
-	}
-}
-
-
 
 /*the Replace Function receives the data to be replaced and the replacement data___and don't return any thing*/
 void replace_Node(int data1,int data2){
@@ -84,14 +84,22 @@ void replace_Node(int data1,int data2){
 
 /* Function that deletes a certain node.
 It receives the data, returns 1 if the data was found and deleted and, returns 0 if the data wasn't found  */
-int delete_Node(int d){
-    struct node* temp;
-	temp = search_Node(d); // call the search_Node function to get the Node address
-	if(temp==NULL)  // the Node wasn't found ______ OR the List is empty
+void deleteFromList(ST_node *listHead, unsigned char position, int* data){
+    ST_node* temp = listHead;
+    unsigned char counter = 0;
+    while(temp->next->next != NULL){
+			temp = temp->next;
+			if(counter == position-1)
+                break;
+
+            counter++;
+    }
+
+    if(temp->next->next == NULL)  // the Node wasn't found ______ OR the List is empty
 		return 0;
-	if((START==END)&&(START!=NULL)){   // the Data is at First and it's the only element in the List
-		START = NULL;  // reset the list to be empty
-		END = NULL;
+
+	if( temp->next != NULL ){   // the Data is at First and it's the only element in the List
+		listHead = NULL;  // reset the list to be empty
 		free(temp);
 		return 1;
 	}else if(temp == START){   // the Data is at First But not the only element in the List

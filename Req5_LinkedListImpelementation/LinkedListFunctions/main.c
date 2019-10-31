@@ -1,11 +1,10 @@
-/* The program is a C Program to Implement the Linked List Functions
+/* The program is a C Program to Implement the Single Linked List
    Created by : Ammar Shahin
    Date : 31/10/2019
                                                                     */
 
 
 #include <stdio.h>  /* include the header file containing function used */
-//#include <string.h>
 #include <stdlib.h>
 #include "linkedLists.h"
 
@@ -13,7 +12,8 @@ int main(){ /* the program starts here */
 
 /* declare variables used */
 	int  choice,r=0,r2;
-	struct node* Temp;
+	ST_list list;
+	createList(&list);
 
 /* Call the initialization Function to initiate the Start and the end of the list */
     init_List();
