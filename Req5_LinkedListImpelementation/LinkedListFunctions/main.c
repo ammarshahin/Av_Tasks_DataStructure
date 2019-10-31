@@ -12,11 +12,9 @@ int main(){ /* the program starts here */
 
 /* declare variables used */
 	int  choice,r=0,r2;
-	ST_list list;
-	createList(&list);
-
-/* Call the initialization Function to initiate the Start and the end of the list */
-    init_List();
+	ST_node* temp;
+    ST_node* listhead = NULL;
+    r = createList(listhead);
 
 /* print the list of choices */
 	printf("1. Print the list.\n");
@@ -33,45 +31,47 @@ int main(){ /* the program starts here */
 		switch(choice){
 			case 1:
 				printf("The elements of the list: ");
-                Temp = START;
-				while(Temp!=NULL){
-					printf("%d ",Temp->data);
-                    Temp = Temp->next;
+                temp = listhead;
+				while( temp != NULL ){
+					printf("%d ",temp->data);
+                    temp = temp->next;
 				}
 				printf("\n");
 				break;
 
 			case 2:
-				printf("Enter The element to insert: ");
+			    printf("Enter The position to insert to: ");
 				scanf("%d",&r);
-				insert_Node(r);
+				printf("Enter The element to insert: ");
+				scanf("%d",&r2);
+				r = insertToList(listhead,r,r2);
 				break;
 
-			case 3:
+			/*case 3:
 				printf("Enter The element to append: ");
 				scanf("%d",&r);
 				append(r);
-				break;
+				break; */
 
-			case 4:
+			 /*case 4:
 				printf("Enter The element that you want to replace : ");
 				scanf("%d",&r);
 				printf("Enter The Replacement: ");
 				scanf("%d",&r2);
 				replace_Node(r,r2);
-				break;
+				break; */
 
 			case 5:
-			    printf("Enter The element to be deleted: ");
+			    printf("Enter The position of the element to be deleted: ");
 				scanf("%d",&r);
-                delete_Node(r);
+                deleteFromList(listhead,r,&r2);
 				break;
 
-			case 6:
+			/*case 6:
 			    printf("Sure you want to Free the list(1 Or 0): ");
 				scanf("%d",&r);
 				r ? Free_List() : 0;
-				break;
+				break;*/
 
 			case 7:
 				exit(0);
