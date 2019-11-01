@@ -18,12 +18,14 @@ int main(){ /* the program starts here */
 	printf("1. Print the list.\n");
 	printf("2. Insert an element.\n");
 	printf("3. Delete an element.\n");
-	printf("4. Sort the list.\n");
-	printf("5. Reverse the list.\n");
-	printf("6. Free the List.\n");
-	printf("7. Exit.\n");
+	printf("4. Search into list.\n");
+	printf("5. Sort the list.\n");
+	printf("6. Reverse the list.\n");
+	printf("7. Free the List.\n");
+	printf("8. Exit.\n");
 
 	while(1){
+        temp = NULL;
 		printf("Enter your Choice: ");
 		scanf("%d",&choice);
 		switch(choice){
@@ -52,9 +54,17 @@ int main(){ /* the program starts here */
 				break;
 
             case 4:
+                printf("Enter The data of the element to be Searched for: ");
+				scanf("%d",&r);
+                    temp = searchIntoList(listhead,r);
+                if(temp)
+                    printf("Found \n");
+                else
+                    printf("Not Found \n");
 				break;
 
             case 5:
+
 				break;
 
 			case 6:

@@ -20,7 +20,7 @@ void createList(ST_node *listHead);
 ST_node* create_Node();
 char insertToList(ST_node *listHead, unsigned char position, int data);
 char deleteFromList(ST_node *listHead, unsigned char position, int* data);
-//ST_node* searchIntoList(ST_node *listHead, int data);
+ST_node* searchIntoList(ST_node *listHead, int data);
 //void sortList(ST_node *listHead); //Bonus
 //void reverseList(ST_node *listHead);
 

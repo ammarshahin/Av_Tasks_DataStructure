@@ -117,6 +117,33 @@ char deleteFromList(ST_node *listHead, unsigned char position, int* data){
 
 
 
+
+ST_node* searchIntoList(ST_node *listHead, int data)
+{
+    ST_node* temp = listHead;
+    unsigned char counter = 0;
+    if(temp== NULL)
+        return NULL;
+
+
+    while( temp->next != NULL ){
+
+        if(temp->data == data)
+            return temp;
+        else
+            temp = temp->next;
+
+        counter++;
+    }
+
+    if(temp->data == data)
+        return temp;
+    else
+        return  NULL;
+}
+
+
+
 /*the Replace Function receives the data to be replaced and the replacement data___and don't return any thing*
 void replace_Node(int data1,int data2){
     struct node* temp = search_Node(data1);
