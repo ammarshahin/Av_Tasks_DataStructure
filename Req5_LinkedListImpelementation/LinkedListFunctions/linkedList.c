@@ -178,35 +178,40 @@ void swapTwoNodes(ST_node* node1,ST_node* node2)
     node2->data = tempData;
 }
 
-/*the Replace Function receives the data to be replaced and the replacement data___and don't return any thing*
-void replace_Node(int data1,int data2){
-    struct node* temp = search_Node(data1);
-
-	if(temp == NULL){    // the search function didn't find the replaced data
-		printf("data not found!!");
-	}else{               // Found
-		temp->data = data2;
+/* clear all elements in the List */
+void Free_List(ST_node* listHead){
+    ST_node* temp = listhead;              // temp is now pointing to the first element
+	while(temp!= NULL){                   // Loop through all the elements
+		listhead = listhead->next;       // Make the next element the first One
+		free(temp);                     // free the pointing to element
+		temp = listhead;               // temp is now pointing to the Next element
 	}
+	listhead = NULL;                 // Re-initiate the list
 }
-*/
-/* Function to Search for the Node ____ Take data and return the address of the element *
-struct node* search_Node(int d){
-	struct node* temp;
-	temp = START;
-	while((temp!=NULL)&&(temp->data!=d)){ // Loop through all the elements until the element is Found
-		temp = temp->next;
-	}
-	return temp;
-}*/
 
 
-/* clear all elements in the List *
-void Free_List(){
-    struct node* temp = START;   // temp is now pointing to the first element
-	while(temp!= NULL){         // Loop through all the elements
-		START = START->next;   // Make the next element the first One
-		free(temp);           // free the pointing to element
-		temp = START;        // temp is now pointing to the Next element
-	}
-	init_List();           // Re-initiate the list
-} */
+char reverseList(ST_node *listHead)
+{
+    ST_node *prevNode, *curNode;
+
+    if(listhead != NULL)
+    {
+        prevNode = listhead;
+        curNode = listhead->next;
+        listhead = listhead->next;
+
+        prevNode->next = NULL; // Make first node as last node
+
+        while(listhead != NULL)
+        {
+            listhead = listhead->next;
+            curNode->next = prevNode;
+
+            prevNode = curNode;
+            curNode = listhead;
+        }
+
+        listhead = prevNode; // Make last node as head
+    }
+    return 1;
+}

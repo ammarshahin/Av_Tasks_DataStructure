@@ -66,18 +66,26 @@ int main(){ /* the program starts here */
             case 5:
                 r = sortList(listhead);
                 if(r)
-                    printf("Sorted. \n");
+                    printf("Sorted Successfully. \n");
                 else
-                    printf("Not Sorted. \n");
+                    printf("Failed. \n");
 				break;
 
-			case 6:
-			    printf("Sure you want to Free the list(1 Or 0): ");
-				scanf("%d",&r);
-				//r ? Free_List() : 0;
+            case 6:
+                r = reverseList(listhead);
+                if(r)
+                    printf("Reverse Successfully. \n");
+                else
+                    printf("Failed. \n");
 				break;
 
 			case 7:
+			    printf("Sure you want to Free the list(1 Or 0): ");
+				scanf("%d",&r);
+				r ? Free_List(listhead) : 0;
+				break;
+
+			case 8:
 				exit(0);
 				break;
 

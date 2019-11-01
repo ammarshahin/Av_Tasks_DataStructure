@@ -23,7 +23,8 @@ char deleteFromList(ST_node *listHead, unsigned char position, int* data);
 ST_node* searchIntoList(ST_node *listHead, int data);
 char sortList(ST_node *listHead); //Bonus
 void swapTwoNodes(ST_node* node1,ST_node* node2);
-//void reverseList(ST_node *listHead);
+void Free_List(ST_node* listHead);
+char reverseList(ST_node *listHead);
 
 
 /*
