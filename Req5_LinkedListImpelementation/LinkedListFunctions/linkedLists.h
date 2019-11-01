@@ -26,15 +26,4 @@ void swapTwoNodes(ST_node* node1,ST_node* node2);
 void Free_List(ST_node* listHead);
 char reverseList(ST_node *listHead);
 
-
-/*
-void init_List();
-struct node* create_Node();
-void append(int);
-void insert_Node(int);
-struct node* search_Node(int);
-int delete_Node(int);
-void Free_List();
-void replace_Node(int,int);
-*/
 #endif // LINKEDLISTS_H_INCLUDED
