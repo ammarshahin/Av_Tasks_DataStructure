@@ -64,7 +64,11 @@ int main(){ /* the program starts here */
 				break;
 
             case 5:
-
+                r = sortList(listhead);
+                if(r)
+                    printf("Sorted. \n");
+                else
+                    printf("Not Sorted. \n");
 				break;
 
 			case 6:

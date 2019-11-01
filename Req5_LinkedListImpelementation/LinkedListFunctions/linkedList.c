@@ -143,6 +143,40 @@ ST_node* searchIntoList(ST_node *listHead, int data)
 }
 
 
+char sortList(ST_node *listHead)
+{
+    int swapped;
+    ST_node *ptr1;
+    ST_node *lptr = NULL;
+
+    /* Checking for empty list */
+    if (listhead == NULL)
+        return 0;
+
+    do{
+        swapped = 0;
+        ptr1 = listhead;
+
+        while (ptr1->next != lptr)
+        {
+            if (ptr1->data > ptr1->next->data)
+            {
+                swapTwoNodes(ptr1, ptr1->next);
+                swapped = 1;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;
+    }while (swapped);
+    return 1;
+}
+
+void swapTwoNodes(ST_node* node1,ST_node* node2)
+{
+    int tempData = node1->data;
+    node1->data = node2->data;
+    node2->data = tempData;
+}
 
 /*the Replace Function receives the data to be replaced and the replacement data___and don't return any thing*
 void replace_Node(int data1,int data2){
